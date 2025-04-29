@@ -1,48 +1,57 @@
+// Get the table and total elements
 const checkoutTable = document.getElementById("checkout-items");
 const totalEl = document.getElementById("checkout-total");
 
+// Retrieve cart items from localStorage
 let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Function to render checkout items
 function renderCheckout(items) {
   checkoutTable.innerHTML = "";
   let total = 0;
 
   items.forEach(item => {
     const price = typeof item.price === "string"
-      ? parseFloat(item.price.replace(/[^\d]/g, ''))
+      ? parseFloat(item.price.replace(/[^\d\.]/g, '')) // Allow decimal point too
       : item.price;
-    const subtotal = price * item.quantity;
+    const subtotal = price * (item.quantity || 1); // Ensure quantity fallback to 1
     total += subtotal;
 
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td><img src="${item.image || './images/placeholder.png'}" alt="${item.name}" style="width:50px;"></td>
+      <td><img src="${item.image || './images/placeholder.png'}" alt="${item.name || 'Unnamed Product'}" style="width:50px;"></td>
       <td>${item.name || "Unnamed Product"}</td>
-      <td>Rs. ${price.toLocaleString()}</td>
-      <td>${item.quantity}</td>
-      <td>Rs. ${subtotal.toLocaleString()}</td>
+      <td>Rs. ${price.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+      <td>${item.quantity || 1}</td>
+      <td>Rs. ${(subtotal).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
     `;
     checkoutTable.appendChild(row);
   });
 
-  totalEl.textContent = `Total: Rs. ${total.toLocaleString()}`;
+  totalEl.textContent = `Total: Rs. ${total.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
 }
 
-document.getElementById("checkout-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+// Form submission handler
+const checkoutForm = document.getElementById("checkout-form");
 
-  const name = document.getElementById("name").value.trim();
-  const address = document.getElementById("address").value.trim();
-  const card = document.getElementById("card").value.trim();
+if (checkoutForm) {
+  checkoutForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  if (!name || !address || !card) {
-    alert("Please fill in all fields.");
-    return;
-  }
+    const name = document.getElementById("name")?.value.trim();
+    const address = document.getElementById("address")?.value.trim();
+    const card = document.getElementById("card")?.value.trim();
 
-  alert("Order confirmed! Redirecting to Thank You page.");
-  localStorage.removeItem("cart");
-  window.location.href = "Thank.html"
-});
+    if (!name || !address || !card) {
+      alert("Please fill in all the fields.");
+      return;
+    }
 
+    alert("Order confirmed! Redirecting to Thank You page...");
+    localStorage.removeItem("cart");
+    window.location.href = "Thank.html"; // Double check the Thank.html file exists
+  });
+}
+
+// Initial rendering of checkout page
 renderCheckout(cartItems);
