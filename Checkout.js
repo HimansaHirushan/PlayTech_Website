@@ -3,7 +3,6 @@ const totalEl = document.getElementById("checkout-total");
 
 let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
-
 function renderCheckout(items) {
   checkoutTable.innerHTML = "";
   let total = 0;
@@ -43,7 +42,7 @@ document.getElementById("checkout-form").addEventListener("submit", function (e)
 
   alert("Order confirmed! Redirecting to Thank You page.");
   localStorage.removeItem("cart");
-  window.location.href = "./Thank.html";
+  window.location.href = "Thank.html"
 });
 
 renderCheckout(cartItems);
