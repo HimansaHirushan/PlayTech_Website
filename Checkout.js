@@ -42,7 +42,7 @@ document.getElementById("checkout-form").addEventListener("submit", function (e)
 
   alert("Order confirmed! Redirecting to Thank You page.");
   localStorage.removeItem("cart");
-  window.location.href = "Thank.html";
+  window.location.href = "./Thank.html";
 });
 
 renderCheckout(cartItems);
