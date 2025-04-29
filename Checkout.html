@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout - City Games</title>
-  <link rel="stylesheet" href="checkout.css"> <!-- You can create similar css like cart.css -->
+  <title>Checkout - PlayTech</title>
+  <link rel="stylesheet" href="Checkout.css" >
+  <script defer src="checkout.js"></script>
 </head>
 <body>
-  <div class="checkout-container">
-    <h2>Checkout</h2>
 
+  <header>
+    <h1>PlayTech</h1>
+    <p>Complete Your Purchase</p>
+  </header>
+
+  <div class="cart-container">
+    <h2>Order Summary</h2>
     <table>
       <thead>
         <tr>
+          <th>Image</th>
           <th>Product</th>
           <th>Unit Price</th>
           <th>Quantity</th>
@@ -23,18 +30,22 @@
         <!-- JS will populate this -->
       </tbody>
     </table>
-
     <p id="checkout-total" class="total">Total: Rs. 0</p>
 
-    <h3>Customer Details</h3>
+    <h2>Customer Details</h2>
     <form id="checkout-form">
-      <input type="text" id="name" placeholder="Full Name" required><br><br>
-      <input type="text" id="address" placeholder="Address" required><br><br>
-      <input type="text" id="card" placeholder="Card Number" required><br><br>
-      <button type="submit" id="confirmOrderBtn">Confirm Order</button>
+      <label for="name">Full Name:</label><br>
+      <input type="text" id="name" required><br><br>
+
+      <label for="address">Shipping Address:</label><br>
+      <input type="text" id="address" required><br><br>
+
+      <label for="card">Card Number:</label><br>
+      <input type="text" id="card" required><br><br>
+
+      <button type="submit">Confirm Purchase</button>
     </form>
   </div>
 
-  <script src="checkout.js"></script>
 </body>
 </html>
