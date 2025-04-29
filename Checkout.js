@@ -3,6 +3,7 @@ const totalEl = document.getElementById("checkout-total");
 
 let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
+
 function renderCheckout(items) {
   checkoutTable.innerHTML = "";
   let total = 0;
