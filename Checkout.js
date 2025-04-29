@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       alert("Order confirmed! Redirecting to Thank You page...");
       localStorage.removeItem("cart");
-      window.location.href = "Thank.html"; // Make sure Thank.html exists
+      window.location.href = "./Thank.html"; // Make sure Thank.html exists
     });
   }
 
