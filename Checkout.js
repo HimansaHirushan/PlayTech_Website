@@ -42,7 +42,6 @@ if (checkoutForm) {
     const address = document.getElementById("address")?.value.trim();
     const card = document.getElementById("card")?.value.trim();
 
-
     if (!name || !address || !card) {
       alert("Please fill in all the fields.");
       return;
@@ -55,3 +54,4 @@ if (checkoutForm) {
 }
 
 // Initial rendering of checkout page
+renderCheckout(cartItems);
