@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      alert("Order confirmed! Redirecting to Thank You page...");
+      alert("Order confirmed! Redirecting to Thank You page...Your wii be diliver soon");
       localStorage.removeItem("cart");
-      window.location.href = "Thank.html"; // Must match actual file name exactly
+      window.location.href = "./Thank.html"; // Must match actual file name exactly
     });
   }
 
